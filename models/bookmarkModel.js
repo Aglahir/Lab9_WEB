@@ -24,7 +24,7 @@ const bookmarkSchema = mongoose.Schema({
   },
 });
 
-const bookmarkCollection = mongoose.model("bookmarksdb", bookmarkSchema);
+const bookmarkCollection = mongoose.model("bookmarks", bookmarkSchema);
 
 const Bookmarks = {
   createBookmark: function (newBookmark) {

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const body_parser = require("body-parser");
 const uuid = require("uuid");
@@ -5,10 +6,11 @@ const morgan = require("morgan");
 const validateToken = require("./middleware/validateToken");
 const mongoose = require("mongoose");
 const { Bookmarks } = require("./models/bookmarkModel");
+const config = require("./config");
 
 const json = body_parser.json();
 
-const port = 3000;
+const port = config.PORT;
 
 let app = express();
 app.use(express.static("public"));
@@ -24,7 +26,7 @@ app.listen(port, () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     };
-    mongoose.connect("mongodb://localhost/bookmarksdb", settings, (err) => {
+    mongoose.connect(config.DATABASE_URL, settings, (err) => {
       if (err) {
         console.log("Mongo connection error");
         return reject(err);
